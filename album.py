@@ -15,9 +15,9 @@ if __name__ == "__main__":
     n = data[0]["ARTYSTA"].nunique()
     print(f"Na liście znajduje się {n} pojedyńczych artystów")
     most_freq_art = pd.DataFrame(data[0].value_counts("ARTYSTA", normalize=False))
-    most_freq_art.columns = ["Count"]
-    m = int(most_freq_art.max())
-    top_art = most_freq_art.loc[most_freq_art["Count"] == m]
+    # most_freq_art.columns = ["Count"]
+    m = most_freq_art.max().iloc[0]
+    top_art = most_freq_art.loc[most_freq_art["count"] == m]
     print(f"Najczęściej na liście pojawiają się:\n{top_art}")
     df = data[0].rename(str.title, axis=1).drop(["Max Poz"], axis=1)
     year_prod = df.groupby(df["Rok"]).Tytuł.agg(["count"])
